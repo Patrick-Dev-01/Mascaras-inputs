@@ -1,24 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useRef, useCallback } from 'react';
+import { Form } from '@unform/web'
+import Input from './components/Input';
+
 
 function App() {
+  const formRef = useRef(null);
+
+  const handleSubmit = useCallback(() => {
+    console.log('data')
+  }, [])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Mascaras para formulário</h1>
+      <Form ref={formRef} onSubmit={handleSubmit}>
+        <label htmlFor="cpfcnpj">CPF / CNPJ</label>
+        <Input name="cpfcnpj" />
+        <label htmlFor="celular">Celular</label>
+        <Input name="celular" />
+        <label htmlFor="data">Data</label>
+        <Input name="data" />
+      </Form>
     </div>
   );
 }
